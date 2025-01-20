@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Кошачий пинтерест</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+            href="https://fonts.googleapis.com/css2?family=Roboto:wght@400&display=swap"
+            rel="stylesheet"
+    />
+</head>
+<body>
+<div id="app" class="app">
+    <header class="app__header">
+        <nav class="app__nav">
+            <button
+                    class="app__tab"
+                    :class="{ 'app__tab--active': activeTab === 'all' }"
+                    @click="activeTab = 'all'"
+            >
+                Все котики
+            </button>
+            <button
+                    class="app__tab"
+                    :class="{ 'app__tab--active': activeTab === 'favorites' }"
+                    @click="activeTab = 'favorites'"
+            >
+                Любимые котики
+            </button>
+        </nav>
+    </header>
+    <main class="app__main" ref="main">
+        <div v-if="activeTab === 'all'" class="gallery">
+            <div
+                    v-for="cat in cats"
+                    :key="cat.id"
+                    class="gallery__item"
+                    :class="{'gallery__item--selected': isFavorite(cat)}"
+            >
+                <img :src="cat.url" alt="Cat" class="gallery__image" />
+                <button
+                        class="gallery__button"
+                        @click="toggleFavorite(cat)"
+                        @mouseover="hoveredCat = cat.id"
+                        @mouseleave="hoveredCat = null"
+                >
+                    <img
+                            v-if="!isFavorite(cat) && hoveredCat !== cat.id"
+                            src="img/Hovered_block.svg"
+                            alt="Heart"
+                            width="40"
+                            height="37"
+                    />
+                    <img
+                            v-else
+                            src="img/Hovered_heart.svg"
+                            alt="Heart"
+                            width="40"
+                            height="37"
+                    />
+                </button>
+            </div>
+        </div>
+        <div v-else-if="activeTab === 'favorites'" class="gallery">
+            <div v-if="favoriteCats.length === 0" class="gallery__empty">
+                Список пуст :(
+            </div>
+            <div
+                    v-for="cat in favoriteCats"
+                    :key="cat.id"
+                    class="gallery__item gallery__item--selected"
+            >
+                <img :src="cat.url" alt="Cat" class="gallery__image" />
+                <button
+                        class="gallery__button gallery__button--liked"
+                        @click="toggleFavorite(cat)"
+                >
+                    <img
+                            src="img/Hovered_heart.svg"
+                            alt="Heart"
+                            width="40"
+                            height="37"
+                    />
+                </button>
+            </div>
+        </div>
+        <p v-if="isLoading" class="loading-text">
+            ... загружаем еще котиков ...
+        </p>
+    </main>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+<script src="app.js"></script>
+</body>
+</html>

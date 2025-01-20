@@ -1,0 +1,132 @@
+body {
+    font-family: "Roboto", Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f3f4f6;
+}
+
+.app__header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 4rem;
+    background: rgba(33, 150, 243, 1);
+    display: flex;
+    gap: 0;
+    z-index: 10;
+}
+
+.app__tab {
+    width: 7.5rem;
+    height: 4rem;
+    font-family: "Roboto", Arial, sans-serif;
+    font-size: 0.875rem;
+    font-weight: 400;
+    line-height: 1.3125rem;
+    letter-spacing: 0.015625rem;
+    text-align: center;
+    color: rgba(255, 255, 255, 0.7);
+    background: rgba(33, 150, 243, 1);
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.app__tab:first-child {
+    margin-left: 3.875rem;
+}
+
+.app__tab:hover {
+    background: rgba(30, 136, 229, 1);
+    color: rgba(255, 255, 255, 1);
+}
+
+.app__tab--active {
+    background: rgba(30, 136, 229, 1);
+    color: rgba(255, 255, 255, 1);
+}
+
+.app__tab:last-child {
+    width: 10.8125rem;
+}
+
+.app__main {
+    padding: 1.25rem;
+    overflow-y: auto;
+    height: calc(100vh - 4rem);
+    margin-top: 4rem;
+    position: relative;
+}
+
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(14.0625rem, 1fr));
+    gap: 1.5rem;
+    justify-items: center;
+}
+
+.gallery__item {
+    position: relative;
+    width: 14.0625rem;
+    height: 14.0625rem;
+    box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+    transition: box-shadow 0.3s ease;
+}
+
+.gallery__item:hover,
+.gallery__item--selected {
+    box-shadow: 0 0.5rem 1rem rgba(15, 15, 15, 0.5);
+}
+
+.gallery__image {
+    width: 14.0625rem;
+    height: 14.0625rem;
+    object-fit: cover;
+}
+
+.gallery__button {
+    position: absolute;
+    width: 2.5rem;
+    height: 2.29375rem;
+    bottom: 0.375rem;
+    right: 0.625rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.gallery__button svg {
+    width: 2.5rem;
+    height: 2.29375rem;
+    transition: fill 0.3s ease;
+}
+
+.loading-text {
+    font-family: "Roboto", Arial, sans-serif;
+    font-size: 0.875rem;
+    font-weight: 400;
+    text-align: center;
+    color: rgba(0, 0, 0, 1);
+    margin-top: 1rem;
+}
+
+.gallery__empty {
+    font-family: "Roboto", Arial, sans-serif;
+    font-size: 0.875rem;
+    font-weight: 400;
+    text-align: center;
+    color: rgba(0, 0, 0, 1);
+    margin-top: 1rem;
+}
+
+.gallery__empty {
+    font-family: "Roboto", Arial, sans-serif;
+    font-size: 0.875rem;
+    font-weight: 400;
+    text-align: center;
+    color: rgba(0, 0, 0, 1);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
